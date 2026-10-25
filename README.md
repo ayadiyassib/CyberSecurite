@@ -1,6 +1,7 @@
 # CyberSecurite
 
-### |----- TD1: Blockchain -----|
+<details>
+<summary>TD1: Blockchain</summary>
 
 ## EXERCICE 1: 'Td1_blockchain\merkle.cpp'
 
@@ -37,3 +38,4 @@ g++ pow.cpp -o pow -lcrypto && ./pow
 g++ pow.cpp -o pow -lcrypto && ./pow 
 ```
 ![Exercise 4 Output](images/image4.png)
+</details>
