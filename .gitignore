@@ -1,0 +1,24 @@
+
+# Compiled C++ executables
+Td1_blockchain/merkle
+*.out
+
+# Object files
+*.o
+*.obj
+
+# Temporary and backup files
+*~
+*.bak
+*.tmp
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# # images 
+# images/
