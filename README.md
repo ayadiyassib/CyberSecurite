@@ -8,8 +8,9 @@
 
 ```bash    
 g++ merkle.cpp -o merkle -lcrypto && ./merkle 
-![Exercise 1 Output](images/image1.png)
 ```
+![Exercise 1 Output](images/image1.png)
+
 ## EXERCICE 2: 'Td1_blockchain\pow.cpp'
 
 #### RUN: 
