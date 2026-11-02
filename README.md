@@ -5,7 +5,7 @@
 
 <br>
 
-**EXERCICE 1:** <u>Td1_blockchain\merkle.cpp</u>
+**EXERCICE 1:** <ins>Td1_blockchain\merkle.cpp</ins>
 
 #### Run:
 
@@ -16,7 +16,7 @@ g++ merkle.cpp -o merkle -lcrypto && ./merkle
 
 ---
 
-**EXERCICE 2:** <u>Td1_blockchain\pow.cpp</u>
+**EXERCICE 2:** <ins>Td1_blockchain\pow.cpp</ins>
 
 #### RUN: 
     
@@ -27,7 +27,7 @@ g++ pow.cpp -o pow -lcrypto && ./pow
 
 ---
 
-**EXERCICE 3:**  <u>Td1_blockchain\pos.cpp</u>
+**EXERCICE 3:**  <ins>Td1_blockchain\pos.cpp</ins>
 
 #### RUN: 
     
@@ -38,7 +38,7 @@ g++ pow.cpp -o pow -lcrypto && ./pow
 
 ---
 
-**EXERCICE 4:** <u>Td1_blockchain\blockchain.cpp</u>
+**EXERCICE 4:** <ins>Td1_blockchain\blockchain.cpp</ins>
 
 #### RUN: 
     
@@ -55,7 +55,7 @@ g++ pow.cpp -o pow -lcrypto && ./pow
 
 <br>
 
-**Plateforme Globale: Simulation, Detection & Evaluation des Attaques** : <u>Td2_blockchain/plateforme.cpp</u>
+**Plateforme Globale: Simulation, Detection & Evaluation des Attaques** : <ins>Td2_blockchain/plateforme.cpp</ins>
 
 *Cette plateforme simule les 4 attaques (51% & Double Spending, Selfish Mining, Block Withholding et Sybil Attack), intègre les métriques de détection avec contre-mesures, et affiche une évaluation comparative (Normale vs Attaquée vs Protégée).*
 
