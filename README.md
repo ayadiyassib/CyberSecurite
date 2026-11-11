@@ -95,6 +95,7 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 
 #### Résultats d'Exécution :
 
+##### A. Tests sur Remix IDE :
 **1. Consultation d'un post via `getPost` (Message & Adresse de l'Auteur) :**
 
 ![Consultation Post](images/image7.png)
