@@ -1,7 +1,7 @@
 # CyberSecurite
 
 <details open>
-<summary><b>TD1: Blockchain</b> | [`Td1_blockchain`](Td1_blockchain) | $\color{red}{\text{(Click to open / close)}}$</summary>
+<summary><b>TD1: Blockchain</b> | <a href="Td1_blockchain"><code>Td1_blockchain</code></a> | $\color{red}{\text{(Click to open / close)}}$</summary>
 
 <br>
 
@@ -52,7 +52,7 @@ g++ blockchain.cpp -o blockchain -lcrypto && ./blockchain
 ---
 <details open>
 
-<summary><b>Atelier 2: Plateforme de Simulation d'attaques</b> | [`Td2_blockchain`](Td2_blockchain) | $\color{red}{\text{(Click to open / close)}}$</summary>
+<summary><b>Atelier 2: Plateforme de Simulation d'attaques</b> | <a href="Td2_blockchain"><code>Td2_blockchain</code></a> | $\color{red}{\text{(Click to open / close)}}$</summary>
 
 <br>
 
@@ -73,7 +73,7 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 ---
 
 <details open>
-<summary><b>Atelier 3: Smart Contract "Mini Réseau Social" en Solidity</b> | [`Td3_blockchain`](Td3_blockchain) | $\color{red}{\text{(Click to open / close)}}$</summary>
+<summary><b>Atelier 3: Smart Contract "Mini Réseau Social" en Solidity</b> | <a href="Td3_blockchain"><code>Td3_blockchain</code></a> | $\color{red}{\text{(Click to open / close)}}$</summary>
 
 <br>
 
