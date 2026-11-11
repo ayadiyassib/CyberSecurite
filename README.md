@@ -1,7 +1,7 @@
 # CyberSecurite
 
 <details open>
-<summary><b>TD1: Blockchain</b> | <a href="Td1_blockchain"><code>Td1_blockchain</code></a> | $\color{red}{\text{(Click to open / close)}}$</summary>
+<summary><b>Atelier 1: Blockchain</b> | <a href="Td1_blockchain"><code>Td1_blockchain</code></a> | $\color{red}{\text{(Click to open / close)}}$</summary>
 
 <br>
 
@@ -107,9 +107,11 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 
 ##### B. Tests en Direct sur la DApp Web3 :
 **3. Publication d'un message & Demande de signature via MetaMask :**
+
 ![Signature MetaMask](images/image9.png)
 
 **4. Confirmation sur le réseau Sepolia & Actualisation du fil (4 messages validés) :**
+
 ![Fil d'actualité mis à jour](images/image10.png)
 
 ---
