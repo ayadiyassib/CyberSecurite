@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Réseau Social Web3</title>
+    <!-- Bibliothèque Web3 officielle (chargée via CDN comme montré dans le PDF) -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #f4f6f9; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0056b3; }
+        input[type="text"] { width: 75%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .post { background: #eef2f7; padding: 10px; border-radius: 5px; margin-top: 10px; border-left: 4px solid #007bff; }
+        .author { font-size: 0.8em; color: #555; word-break: break-all; }
+        #status { font-weight: bold; color: #28a745; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Mini Réseau Social Web3</h2>
+        <button onclick="initWeb3()">1. Connecter MetaMask</button>
+        <p id="accountInfo">Non connecté</p>
+        <p>Statut : <span id="status">En attente...</span></p>
+    </div>
+
+    <div class="card">
+        <h3>Publier un Nouveau Message</h3>
+        <input type="text" id="postMessage" placeholder="Écrivez votre message ici...">
+        <button onclick="publishNewPost()">Publier</button>
+    </div>
+
+    <div class="card">
+        <h3>Publications Décentralisées</h3>
+        <button onclick="loadAllPosts()">Actualiser le Fil d'Actualité</button>
+        <div id="postsList"></div>
+    </div>
+
+    <script>
+        // Adresse exacte de TON contrat déployé sur Sepolia
+        const CONTRACT_ADDRESS = "0x3c4cd92aee82b92ae8f311505e6b249d27ab53d7";
+
+        // L'ABI exacte de ton contrat MiniSocial
+        const CONTRACT_ABI = [
+	            {
+		        "inputs": [
+		        	{
+		        		"internalType": "uint256",
+		        		"name": "index",
+		        		"type": "uint256"
+		        	}
+		        ],
+		        "name": "getPost",
+		        "outputs": [
+		        	{
+		        		"internalType": "string",
+		        		"name": "",
+		        		"type": "string"
+		        	},
+		        	{
+		        		"internalType": "address",
+		        		"name": "",
+		        		"type": "address"
+		        	}
+		        ],
+		        "stateMutability": "view",
+		        "type": "function"
+	        },
+	        {
+	        	"inputs": [],
+	        	"name": "getTotalPosts",
+	        	"outputs": [
+	        		{
+	        			"internalType": "uint256",
+	        			"name": "",
+	        			"type": "uint256"
+	        		}
+	        	],
+	        	"stateMutability": "view",
+	        	"type": "function"
+	        },
+	        {
+	        	"inputs": [
+	        		{
+	        			"internalType": "uint256",
+	        			"name": "",
+	        			"type": "uint256"
+	        		}
+	        	],
+	        	"name": "posts",
+	        	"outputs": [
+	        		{
+	        			"internalType": "string",
+	        			"name": "message",
+	        			"type": "string"
+	        		},
+	        		{
+	        			"internalType": "address",
+	        			"name": "author",
+	        			"type": "address"
+	        		}
+	        	],
+	        	"stateMutability": "view",
+	        	"type": "function"
+	        },
+	        {
+	        	"inputs": [
+	        		{
+	        			"internalType": "string",
+	        			"name": "_message",
+	        			"type": "string"
+	        		}
+	        	],
+	        	"name": "publishPost",
+	        	"outputs": [],
+	        	"stateMutability": "nonpayable",
+	        	"type": "function"
+	        }
+        ];
+
+        let web3;
+        let contract;
+        let userAccount;
+
+        // Connexion à MetaMask (comme dans le PDF)
+        async function initWeb3() {
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    userAccount = accounts[0];
+                    document.getElementById('accountInfo').innerText = "Connecté : " + userAccount;
+                    contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+                    document.getElementById('status').innerText = "Prêt (Connecté à Sepolia) !";
+                    loadAllPosts();
+                } catch (error) {
+                    document.getElementById('status').innerText = "Erreur de connexion : " + error.message;
+                }
+            } else {
+                alert("Veuillez installer MetaMask !");
+            }
+        }
+
+        // Publier un message (Interaction d'écriture via transaction)
+        async function publishNewPost() {
+            const message = document.getElementById('postMessage').value;
+            if (!message) return alert("Veuillez écrire un message !");
+            if (!contract) return alert("Veuillez d'abord connecter MetaMask !");
+
+            document.getElementById('status').innerText = "Transaction en cours de signature...";
+            try {
+                await contract.methods.publishPost(message).send({ from: userAccount });
+                document.getElementById('status').innerText = "Post publié avec succès sur la Blockchain !";
+                document.getElementById('postMessage').value = "";
+                loadAllPosts();
+            } catch (error) {
+                document.getElementById('status').innerText = "Erreur : " + error.message;
+            }
+        }
+
+        // Charger tous les messages (Interaction de lecture gratuite via call)
+        async function loadAllPosts() {
+            if (!contract) return;
+            document.getElementById('status').innerText = "Chargement des données...";
+            try {
+                const total = await contract.methods.getTotalPosts().call();
+                const listEl = document.getElementById('postsList');
+                listEl.innerHTML = "";
+
+                for (let i = 0; i < total; i++) {
+                    const post = await contract.methods.getPost(i).call();
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'post';
+                    postDiv.innerHTML = `<strong>"${post[0]}"</strong><br><span class="author">Auteur : ${post[1]}</span>`;
+                    listEl.appendChild(postDiv);
+                }
+                document.getElementById('status').innerText = `${total} message(s) chargé(s) depuis Sepolia.`;
+            } catch (error) {
+                document.getElementById('status').innerText = "Erreur de lecture : " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

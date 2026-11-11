@@ -82,7 +82,7 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 *Développement, déploiement sur le réseau de test Ethereum Sepolia et interactions multi-utilisateurs via MetaMask et Remix IDE.*
 
 #### Adresse du Contrat Déployé (Sepolia) :
-`0x3c48972E9c855a1be2e6f42a5a04eb92408b53D7`
+`0x3c4cd92AEe82b92AE8F311505E6B249d27Ab53D7`
 
 #### Étapes Réalisées :
 1. **Déploiement du contrat** : Déployé via Remix IDE connecté à MetaMask sur le réseau Sepolia.
@@ -102,6 +102,15 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 **2. Consultation du nombre total de messages via `getTotalPosts` :**
 
 ![Total Posts](images/image8.png)
+
+---
+
+##### B. Tests en Direct sur la DApp Web3 :
+**3. Publication d'un message & Demande de signature via MetaMask :**
+![Signature MetaMask](images/image9.png)
+
+**4. Confirmation sur le réseau Sepolia & Actualisation du fil (4 messages validés) :**
+![Fil d'actualité mis à jour](images/image10.png)
 
 ---
 

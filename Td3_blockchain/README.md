@@ -1,4 +1,4 @@
-# Rapport Technique - Atelier 3 : Smart Contract "Mini Réseau Social"
+# Rapport Technique - Atelier 3 : Smart Contract & DApp Web3 "Mini Réseau Social"
 
 **Auteur :** Yaasin Ayadi  
 **Matière :** Cybersécurité & Blockchain  
@@ -8,38 +8,58 @@
 ---
 
 ## 1. Introduction & Objectif
-L'objectif de cet atelier est de concevoir, déployer et tester un Smart Contract décentralisé nommé **MiniSocial** sur la blockchain Ethereum (réseau de test Sepolia). Ce contrat permet aux utilisateurs de publier des messages immuables et garantit l'authenticité de l'auteur grâce aux clés cryptographiques de MetaMask (`msg.sender`).
+L'objectif de cet atelier est de concevoir, déployer et interagir avec une **Application Décentralisée (DApp)** complète basée sur la blockchain Ethereum (réseau de test public Sepolia). Ce projet réunit les trois piliers du Web3 :
+1. **Un Smart Contract (`MiniSocial.sol`)** : assurant l'immuabilité et l'intégrité des messages.
+2. **Un Wallet utilisateur (MetaMask)** : gérant l'identité et les signatures cryptographiques (`msg.sender`).
+3. **Une Interface Web Frontend (`index.html`)** : permettant l'interaction utilisateur via la bibliothèque `Web3.js`.
 
-## 2. Architecture du Smart Contract (MiniSocial.sol)
-Le contrat est rédigé en Solidity (^0.8.26) et s'articule autour des éléments suivants :
-- **Structure `Post`** : encapsule le contenu textuel (`string message`) et l'adresse publique de l'émetteur (`address author`).
-- **Tableau dynamique `posts`** : stocke la liste chronologique de tous les messages.
-- **Fonction `publishPost(string _message)`** : crée un nouveau `Post` en associant automatiquement `msg.sender` comme auteur, puis l'ajoute au tableau (nécessite une transaction et du gas).
-- **Fonction `getPost(uint index)` [view]** : permet de consulter gratuitement le message et l'auteur d'un post donné.
-- **Fonction `getTotalPosts()` [view]** : retourne le nombre total de messages enregistrés.
+---
 
-## 3. Environnement et Outils Utilisés
-- **Remix IDE** : environnement de développement et de compilation Solidity.
-- **MetaMask** : extension de gestion de portefeuille Web3.
-- **Réseau de test** : Ethereum Sepolia Testnet.
-- **Adresse du contrat déployé** : `0x3c48972E9c855a1be2e6f42a5a04eb92408b53D7`.
+## 2. Architecture du Smart Contract (`MiniSocial.sol`)
+Rédigé en Solidity (`^0.8.26`), le contrat repose sur les éléments fondamentaux suivants :
+- **Structure `Post`** : encapsule le message textuel (`string message`) et l'adresse publique de son auteur (`address author`).
+- **Tableau dynamique `posts[]`** : registre public chronologique de l'ensemble des publications.
+- **Fonction `publishPost(string _message)`** : crée un nouveau message en assignant automatiquement `msg.sender` comme auteur, puis l'ajoute au registre (génère une transaction payée en gas).
+- **Fonction `getPost(uint index)` [view]** : lecture gratuite et décentralisée d'un post spécifique via son index.
+- **Fonction `getTotalPosts()` [view]** : consultation gratuite du volume total de publications enregistrées.
 
-## 4. Protocole Expérimental et Résultats des Tests
+---
 
-### Test 1 : Déploiement et Publication par le Compte 1
-- **Compte émetteur :** `0x0662910df0ed70795712fa0287c436ccf2b44712`
-- **Action :** Appel de `publishPost("Bienvenue sur MiniSocial !")`.
-- **Résultat :** Transaction validée avec succès sur le bloc Sepolia.
+## 3. Architecture de la DApp Web3 (`index.html`)
+L'interface utilisateur a été développée en HTML5/JavaScript et utilise **Web3.js** pour communiquer avec le nœud Ethereum :
+- **Authentification décentralisée** : Détection et connexion automatique à MetaMask via `window.ethereum.request({ method: 'eth_requestAccounts' })`.
+- **Lecture asynchrone** : Récupération du compteur de posts via `getTotalPosts().call()`, puis itération sur `getPost(i).call()` pour générer dynamiquement le fil d'actualité.
+- **Émission de transactions** : Formulaire permettant la rédaction d'un post et déclenchement d'une transaction signée via `contract.methods.publishPost(...).send({ from: userAccount })`.
 
-### Test 2 : Publication par un Second Compte (Multi-utilisateurs)
-- **Compte émetteur :** `0x937b4af9b2996090c2f7c402467b3d635dd4e00d` (créé et approvisionné avec 0.02 SepoliaETH).
-- **Action :** Appel de `publishPost("Deuxieme message par un autre utilisateur")`.
-- **Résultat :** Transaction confirmée, prouvant le fonctionnement multi-utilisateurs.
+---
 
-### Test 3 : Vérification de la Persistance et Intégrité des Données
-- L'appel de `getTotalPosts()` renvoie `2`.
-- L'appel de `getPost(0)` restitue le message initial avec l'adresse du Compte 1.
-- L'appel de `getPost(1)` restitue le second message avec l'adresse du Compte 2.
+## 4. Environnement & Outils Utilisés
+- **Remix IDE** : Environnement de compilation et premier déploiement.
+- **MetaMask** : Portefeuille d'adresses et gestionnaire de clés privées.
+- **Réseau de test** : Ethereum Sepolia Testnet (Chain ID : `11155111`).
+- **Adresse du Contrat Déployé** : `0x3c48972E9c855a1be2e6f42a5a04eb92408b53D7`.
 
-## 5. Conclusion
-L'atelier a permis de valider le cycle de vie complet d'un Smart Contract Ethereum : de l'écriture en Solidity jusqu'à la consultation décentralisée en passant par la gestion des signatures transactionnelles avec MetaMask.
+---
+
+## 5. Protocole Expérimental & Résultats
+
+### Phase 1 : Tests sur Remix IDE
+1. **Déploiement initial** : Déployé par le **Compte 1** (`0x0662910dF0Ed70795712FA0287C436CCf2b44712`).
+2. **Publication Multi-Comptes** :
+   - Message 1 (`"Bienvenue sur MiniSocial !"`) publié par le Compte 1.
+   - Message 2 (`"Deuxieme message par un autre utilisateur"`) publié par le **Compte 2** (`0x937B4af9B2996090C2F7c402467b3D635DD4E00D`).
+3. **Vérification** :
+   - Appel de `getTotalPosts()` validant la présence de `2` messages.
+   - Appel de `getPost(0)` et `getPost(1)` confirmant l'association exacte entre chaque message et son auteur respectif.
+
+---
+
+### Phase 2 : Tests en Direct sur la DApp Web3
+1. **Connexion Web3** : Connexion réussie du navigateur au portefeuille MetaMask sur le réseau Sepolia.
+2. **Signature et Envoi** : Rédaction d'un nouveau message (`"Bonjour et Bienvenue"`), ouverture de la pop-up MetaMask et validation de la signature cryptographique.
+3. **Mise à jour en direct** : Après validation du bloc par les validateurs Ethereum Sepolia, le fil d'actualité est rafraîchi dynamiquement pour afficher l'ensemble des 4 messages enregistrés dans le contrat.
+
+---
+
+## 6. Conclusion
+Cet atelier a permis d'appréhender le cycle de développement complet d'une application Web3 : de l'implémentation du contrat intelligent en Solidity, à la gestion du gas et des signatures sur un testnet public, jusqu'à la conception d'un client web décentralisé interagissant en temps réel avec la blockchain.
