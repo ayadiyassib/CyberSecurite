@@ -120,11 +120,11 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 </details>
 
 
-<br>
-
 <!-- ========================================== -->
 <!-- DEVOIR 1 -->
 <!-- ========================================== -->
+---
+
 <details open>
 <summary><b>Devoir 1: Système de Certification Académique sur Blockchain</b> | <a href="Devoir1_Certification"><code>Devoir1_Certification</code></a> | $\color{red}{\text{(Click to open / close)}}$</summary>
 
