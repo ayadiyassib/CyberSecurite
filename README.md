@@ -119,3 +119,46 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 
 </details>
 
+
+<br>
+
+<!-- ========================================== -->
+<!-- DEVOIR 1 -->
+<!-- ========================================== -->
+<details open>
+<summary><b>Devoir 1: Système de Certification Académique sur Blockchain</b> | <a href="Devoir1_Certification"><code>Devoir1_Certification</code></a> | $\color{red}{\text{(Click to open / close)}}$</summary>
+
+<br>
+
+> 📘 **Documentation Complète & Guide d'Installation :**  
+> L'ensemble du protocole technique, des commandes de déploiement et des détails d'architecture se trouve dans le fichier dédié : [`Devoir1_Certification/README.md`](Devoir1_Certification/README.md).
+
+<br>
+
+
+**Solution décentralisée de bout en bout pour la certification de diplômes universitaires (Smart Contract + Frontend React + Import Excel SheetJS).**
+
+- **Smart Contract & Sécurité** : [`Devoir1_Certification/contracts/CertificateRegistry.sol`](Devoir1_Certification/contracts/CertificateRegistry.sol) *(6/6 tests unitaires automatisés validés)*.
+- **Application Web3 Frontend** : [`Devoir1_Certification/frontend/src/App.jsx`](Devoir1_Certification/frontend/src/App.jsx).
+- **Modèle de Données Excel** : [`Devoir1_Certification/étudiants.xlsx`](Devoir1_Certification/étudiants.xlsx).
+- **Réseau & Adresse Déployée** : Hardhat Local (`0x5FbDB2315678afecb367f032d93F642f64180aa3`).
+
+---
+
+#### Résultats d'Exécution & Démonstration :
+
+**1. Émission unitaire d'un certificat avec signature MetaMask :**
+
+![Émission unitaire](images/image11.png)
+
+**2. Importation Excel (.xlsx) et émission groupée Batch Mint :**
+
+![Batch Mint](images/image12.png)
+
+**3. Consultation et vérification publique du diplôme sur la Blockchain :**
+
+![Vérification diplôme](images/image13.png)
+
+---
+
+</details>
