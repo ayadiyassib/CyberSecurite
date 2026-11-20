@@ -1,0 +1,33 @@
+{
+  "name": "Diplôme Universitaire - Amina Benali",
+  "description": "Certificat officiel de Master SIC délivré par l'Université Officielle. Ce NFT atteste de l'authenticité académique et de la réussite de l'étudiant(e).",
+  "image": "/ipfs/diplome-officiel.svg",
+  "external_url": "http://localhost:5173",
+  "attributes": [
+    {
+      "trait_type": "CNE / Matricule",
+      "value": "2023-INF-333"
+    },
+    {
+      "trait_type": "Nom de l'étudiant",
+      "value": "Amina Benali"
+    },
+    {
+      "trait_type": "Diplôme",
+      "value": "Master SIC"
+    },
+    {
+      "trait_type": "Mention",
+      "value": "Mention Bien"
+    },
+    {
+      "trait_type": "Date d'émission",
+      "value": "2026-11-19"
+    },
+    {
+      "trait_type": "Statut",
+      "value": "Authentique & Valide"
+    }
+  ]
+}
+

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="50%" stop-color="#f9d976"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Arrière-plan diplôme -->
+  <rect x="20" y="20" width="760" height="510" rx="16" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="6" filter="url(#shadow)"/>
+  <rect x="36" y="36" width="728" height="478" rx="10" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+  <!-- Ornements de coin -->
+  <g fill="none" stroke="url(#goldGrad)" stroke-width="2.5">
+    <path d="M 50 80 L 50 50 L 80 50" />
+    <circle cx="50" cy="50" r="3" fill="#d4af37"/>
+    <path d="M 750 80 L 750 50 L 720 50" />
+    <circle cx="750" cy="50" r="3" fill="#d4af37"/>
+    <path d="M 50 470 L 50 500 L 80 500" />
+    <circle cx="50" cy="500" r="3" fill="#d4af37"/>
+    <path d="M 750 470 L 750 500 L 720 500" />
+    <circle cx="750" cy="500" r="3" fill="#d4af37"/>
+  </g>
+
+  <!-- En-tête / Sceau -->
+  <g transform="translate(400, 105)" text-anchor="middle">
+    <!-- Emblème universitaire -->
+    <circle cx="0" cy="-25" r="28" fill="url(#blueGrad)"/>
+    <path d="M -14 -20 L 0 -34 L 14 -20 L 0 -12 Z" fill="#ffffff"/>
+    <path d="M -7 -17 L -7 -5 C -7 2 7 2 7 -5 L 7 -17" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <line x1="14" y1="-20" x2="18" y2="-10" stroke="#f9d976" stroke-width="2"/>
+    
+    <text y="28" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#1e3a8a" letter-spacing="4">UNIVERSITÉ OFFICIELLE</text>
+    <text y="48" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="2">REGISTRE ACADÉMIQUE OFFICIEL SUR BLOCKCHAIN (ERC-721)</text>
+  </g>
+
+  <!-- Titre Principal -->
+  <g transform="translate(400, 205)" text-anchor="middle">
+    <text y="0" font-family="'Georgia', serif" font-size="28" font-weight="bold" fill="#0f172a" letter-spacing="1">DIPLÔME D'ÉTAT</text>
+    <line x1="-120" y1="14" x2="120" y2="14" stroke="url(#goldGrad)" stroke-width="2"/>
+    <text y="36" font-family="'Inter', sans-serif" font-size="13" font-style="italic" fill="#475569">Le présent certificat atteste avec authenticité que l'étudiant(e)</text>
+  </g>
+
+  <!-- Titulaire -->
+  <g transform="translate(400, 285)" text-anchor="middle">
+    <text y="0" font-family="'Georgia', serif" font-size="30" font-weight="bold" fill="#1e3a8a">CERTIFICAT OFFICIEL NFT</text>
+    <text y="30" font-family="'Inter', sans-serif" font-size="14" font-weight="600" fill="#059669">✓ MÉTADONNÉES DÉCENTRALISÉES VÉRIFIÉES</text>
+  </g>
+
+  <!-- Bas de page avec Sceau Doré et Signature -->
+  <g transform="translate(140, 410)">
+    <line x1="0" y1="30" x2="180" y2="30" stroke="#94a3b8" stroke-width="1"/>
+    <text x="90" y="48" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#475569">Le Président du Jury</text>
+  </g>
+
+  <g transform="translate(400, 415)" text-anchor="middle">
+    <!-- Sceau de cire dorée -->
+    <circle cx="0" cy="0" r="36" fill="url(#goldGrad)" stroke="#b8860b" stroke-width="2"/>
+    <circle cx="0" cy="0" r="31" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <text y="4" font-family="'Georgia', serif" font-size="11" font-weight="bold" fill="#78350f" letter-spacing="1">SCELLÉ</text>
+    <text y="16" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#78350f">WEB3 VERIFIED</text>
+  </g>
+
+  <g transform="translate(480, 410)">
+    <line x1="0" y1="30" x2="180" y2="30" stroke="#94a3b8" stroke-width="1"/>
+    <text x="90" y="48" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#475569">La Direction Académique</text>
+  </g>
+
+  <!-- Footer Token Standard -->
+  <text x="400" y="495" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#94a3b8">ERC-721 Smart Contract Verified • Tamper-Proof Academic Record</text>
+</svg>
+

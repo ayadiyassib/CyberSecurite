@@ -1,0 +1,15 @@
+{
+  "name": "Diplôme Universitaire - Omar Idrissi",
+  "description": "Certificat officiel de Master Intelligence Artificielle délivré par l'Université Officielle.",
+  "image": "/ipfs/diplome-officiel.svg",
+  "external_url": "http://localhost:5173",
+  "attributes": [
+    { "trait_type": "CNE / Matricule", "value": "2023-INF-115" },
+    { "trait_type": "Nom de l'étudiant", "value": "Omar Idrissi" },
+    { "trait_type": "Diplôme", "value": "Master Intelligence Artificielle" },
+    { "trait_type": "Mention", "value": "Mention Tres Bien" },
+    { "trait_type": "Date d'émission", "value": "2026-06-15" },
+    { "trait_type": "Statut", "value": "Authentique & Valide" }
+  ]
+}
+

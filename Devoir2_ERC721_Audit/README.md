@@ -102,4 +102,22 @@ Les 4 diplômes NFT sont enregistrés simultanément dans le même bloc avec un 
 ### 5. Consultation Publique & Métadonnées du NFT (Standard ERC-721)
 Vérification publique sans permission restituant le **Token ID (#1)**, le lien **Token URI (IPFS)** et l'adresse du propriétaire **ownerOf** :
 
-![Vérification Publique NFT](../images/image18.png)
+<p align="center">
+  <img src="../images/image18.png" alt="Vérification NFT">
+</p>
+
+**Consulter JSON**
+
+![Consulter JSON](../images/image21.png)
+
+## 🚨 Démonstration de la Robustesse (Tests de Sécurité & Gestion des Erreurs)
+
+### 6. Cas d'Erreur 1 : Tentative d'émission par un compte Invité (Accès Refusé)
+Un compte non autorisé (`0x937B...E00D - Visiteur`) tente d'émettre un diplôme. L'application bloque l'action et affiche un avertissement de sécurité sans gaspiller de gas :
+
+![Accès refusé Visiteur](../images/image19.png)
+
+### 7. Cas d'Erreur 2 : Tentative de Double Enregistrement (Anti-Doublon on-chain)
+L'administrateur tente d'émettre un diplôme pour un autre étudiant (*Ahmed Mehboub*) en réutilisant un CNE déjà enregistré (*2023-INF-333*). Le Smart Contract rejette la transaction via la règle `require(!_registeredStudents[studentId])` :
+
+![Erreur doublon CNE](../images/image20.png)

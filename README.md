@@ -210,7 +210,24 @@ g++ attack_51.cpp -o attack_51 -lcrypto && ./attack_51
 
 **5. Consultation et vérification publique du NFT (Token ID #1, Token URI & Propriétaire) :**
 
-![Vérification NFT](images/image18.png)
+<p align="center">
+  <img src="images/image18.png" alt="Vérification NFT">
+</p>
+
+**Consulter JSON**
+
+![Consulter JSON](images/image21.png)
+---
+
+#### B. Tests de Sécurité & Robustesse (Gestion des Erreurs) :
+
+**6. Blocage on-chain d'un double enregistrement avec le même CNE :**
+
+![Blocage Doublon CNE](images/image20.png)
+
+**7. Accès refusé pour un compte Invité sans MINTER_ROLE :**
+
+![Accès Refusé Visiteur](images/image19.png)
 
 ---
 

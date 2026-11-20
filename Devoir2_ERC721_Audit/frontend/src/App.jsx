@@ -68,6 +68,15 @@ function Icon({ name, className = "" }) {
   );
 }
 
+// Résolution locale des URIs IPFS (sans service externe)
+const resolveIpfsUri = (uri) => {
+  if (!uri) return "#";
+  if (uri.startsWith("ipfs://")) {
+    return "/" + uri.replace("ipfs://", "ipfs/");
+  }
+  return uri;
+};
+
 function App() {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
@@ -282,6 +291,18 @@ function App() {
         readContract.ownerOf(tokenId),
       ]);
 
+      // Lecture et téléchargement des métadonnées JSON standard (ERC-721)
+      let metadata = null;
+      try {
+        const metaUrl = resolveIpfsUri(tokenUri);
+        const metaRes = await fetch(metaUrl);
+        if (metaRes.ok) {
+          metadata = await metaRes.json();
+        }
+      } catch (e) {
+        console.warn("Impossible de charger les métadonnées IPFS :", e);
+      }
+
       setCertificateResult({
         id: tokenId.toString(),
         studentName: cert.studentName,
@@ -293,6 +314,7 @@ function App() {
         revoked: cert.revoked,
         tokenUri,
         owner,
+        metadata,
       });
       setStatusMessage("");
     } catch (err) {
@@ -558,10 +580,53 @@ function App() {
                   <p className="diploma-title">{certificateResult.diplomaTitle}</p>
                   <p><span className="account-badge">Token ID : #{certificateResult.id}</span></p>
                   <div className="alert alert-info">
-                    <strong>Lien Métadonnées (IPFS)</strong>
-                    <br />
-                    <code>{certificateResult.tokenUri}</code>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+                      <strong>Lien Métadonnées (IPFS)</strong>
+                      <a
+                        href={resolveIpfsUri(certificateResult.tokenUri)}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          background: "#2563eb",
+                          color: "#ffffff",
+                          padding: "3px 10px",
+                          borderRadius: "6px",
+                          fontSize: "0.75rem",
+                          fontWeight: "600",
+                          textDecoration: "none"
+                        }}
+                      >
+                        Consulter JSON ↗
+                      </a>
+                    </div>
+                    <code>
+                      <a
+                        href={resolveIpfsUri(certificateResult.tokenUri)}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ color: "inherit", textDecoration: "underline" }}
+                        title="Ouvrir le fichier JSON standard ERC-721"
+                      >
+                        {certificateResult.tokenUri}
+                      </a>
+                    </code>
                   </div>
+
+                  {certificateResult.metadata?.image && (
+                    <div style={{ textAlign: "center", margin: "16px 0" }}>
+                      <img
+                        src={resolveIpfsUri(certificateResult.metadata.image)}
+                        alt="Diplôme Officiel"
+                        style={{
+                          maxWidth: "320px",
+                          width: "100%",
+                          borderRadius: "10px",
+                          border: "1px solid #d9dfeb",
+                          boxShadow: "0 6px 12px -2px rgba(15, 23, 42, 0.08)"
+                        }}
+                      />
+                    </div>
+                  )}
                   <p className="recipient-text">
                     Détenteur actuel du NFT (ownerOf) : <code>{certificateResult.owner}</code>
                   </p>
